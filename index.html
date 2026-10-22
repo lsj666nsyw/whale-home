@@ -3,119 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>鲸鱼工具箱 — 本地运行的免费在线工具</title>
-<meta name="description" content="图片压缩、PDF合并拆分、Excel合并比对、31个常用小工具。全部在浏览器本地处理，文件不上传，不用注册。">
+<title>鲸鱼工具箱 — 免费在线工具，点开即用</title>
+<meta name="description" content="图片压缩、PDF合并拆分、Excel合并比对、计算器、编解码等常用工具。全部在浏览器本地运行，文件不上传，不用注册。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%231a1a1a'/%3E%3Cpath d='M6 16c0-4.4 4-8 10-8s10 3.6 10 8-4 8-10 8-10-3.6-10-8z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3Ccircle cx='12' cy='13' r='1' fill='%23fff'/%3E%3C/svg%3E">
 <style>
-/* 设计原则：单色系、无渐变、无装饰图形、排版建立层级。
-   去掉 AI 味的渐变、emoji、✓ 徽章、彩色卡片。 */
-
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;padding-bottom:env(safe-area-inset-bottom)}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-
-
-/* 设计原则：单色系、无渐变、无装饰图形、排版建立层级。
-   去掉了 AI 味较重的渐变 hero、emoji 图标、✓ 信任徽章、彩色卡片。 */
 :root{
-  --ink:#1a1a1a;
-  --ink2:#555;
-  --ink3:#999;
-  --line:#e8e8e8;
-  --bg:#fafafa;
-  --card:#fff;
-  --accent:#2b5cff;
-  --accent-dim:#f0f4ff;
-  --radius:4px;
+  --ink:#1a1a1a;--ink2:#555;--ink3:#999;--line:#e8e8e8;--bg:#fafafa;--card:#fff;
+  --accent:#2b5cff;--accent-dim:#f0f4ff;--radius:4px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei UI",sans-serif;
-  background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;
-  padding-bottom:env(safe-area-inset-bottom);
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei UI",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;padding-bottom:env(safe-area-inset-bottom)}
 .wrap{max-width:860px;margin:0 auto;padding:0 20px}
-
-/* ---------- 顶栏 ---------- */
-.top{
-  position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);
-  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
-}
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;height:56px;gap:10px}
 .top .mk{width:28px;height:28px;flex:none}
 .top .mk svg{width:100%;height:100%;display:block}
-.top b{font-size:15px;font-weight:600;letter-spacing:.2px}
+.top b{font-size:15px;font-weight:600}
 .top .pc{margin-left:auto;font-size:12px;color:var(--ink3)}
-
-/* ---------- 主标题区（纯排版，无渐变） ---------- */
-.lead{padding:48px 0 32px}
-.lead h1{
-  font-size:28px;font-weight:600;letter-spacing:-.5px;line-height:1.35;margin-bottom:12px;
-}
-.lead .sub{font-size:15px;color:var(--ink2);max-width:580px}
-
-/* ---------- 分区标题 ---------- */
-.sec{margin:40px 0 16px}
-.sec h2{
-  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink3);padding-bottom:10px;border-bottom:1px solid var(--line);
-}
-
-/* ---------- 工具列表（纯文字链接式） ---------- */
-.tools{display:grid;gap:0}
-.tool{
-  display:flex;align-items:baseline;gap:16px;padding:13px 4px;
-  border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:.15s;
-}
-.tool:last-child{border-bottom:none}
+.lead{padding:40px 0 8px}
+.lead h1{font-size:26px;font-weight:600;letter-spacing:-.4px;line-height:1.35;margin-bottom:10px}
+.lead .sub{font-size:14.5px;color:var(--ink2);max-width:560px}
+.sec{margin:32px 0 12px}
+.sec h2{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--ink3);padding-bottom:9px;border-bottom:1px solid var(--line)}
+/* 快捷三入口 */
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:14px}
+.quick a{background:var(--card);padding:14px 16px;text-decoration:none;color:inherit;transition:.12s;display:block}
+.quick a:hover{background:var(--accent-dim)}
+.quick .nm{font-size:14px;font-weight:600;margin-bottom:2px}
+.quick .ds{font-size:12px;color:var(--ink3)}
+/* 工具直达列表 */
+.tools{margin-top:12px}
+.tool{display:flex;align-items:baseline;gap:14px;padding:11px 6px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:.12s}
 .tool:hover{background:var(--card)}
-.tool .nm{font-size:15px;font-weight:500;min-width:120px}
-.tool .ds{font-size:13px;color:var(--ink2)}
-.tool .ar{margin-left:auto;color:var(--ink3);font-size:14px;flex:none}
+.tool .nm{font-size:14px;font-weight:500;min-width:110px}
+.tool .ds{font-size:12.5px;color:var(--ink3)}
+.tool .ar{margin-left:auto;color:var(--line);font-size:13px;flex:none}
 .tool:hover .ar{color:var(--accent)}
-.tool.hot .nm::after{
-  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:var(--accent);margin-left:6px;vertical-align:middle;
-}
-
-/* ---------- 工具表格（紧凑列表） ---------- */
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:1px;background:var(--line);border:1px solid var(--line);margin-top:14px;
-}
-.grid a{
-  background:var(--card);padding:12px 14px;text-decoration:none;color:inherit;
-  transition:.12s;display:block;
-}
-.grid a:hover{background:var(--accent-dim)}
-.grid .nm{font-size:13px;font-weight:600;margin-bottom:2px}
-.grid .ds{font-size:11.5px;color:var(--ink3)}
-
-/* ---------- 说明 ---------- */
-.note{
-  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  padding:18px 20px;font-size:13.5px;color:var(--ink2);line-height:1.8;
-}
+.note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.8}
 .note b{color:var(--ink);font-weight:600}
-.note p+p{margin-top:10px}
-
-/* ---------- 页脚 ---------- */
-footer{border-top:1px solid var(--line);background:#fff;padding:24px 0 32px;margin-top:48px}
+footer{border-top:1px solid var(--line);background:#fff;padding:22px 0 30px;margin-top:44px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 footer a{color:var(--ink2);text-decoration:none;font-size:13px}
 footer a:hover{color:var(--accent)}
 footer .copy{font-size:12px;color:var(--ink3)}
-
 @media(max-width:560px){
-  .lead{padding:32px 0 24px}
-  .lead h1{font-size:22px}
-  .tool{flex-wrap:wrap;gap:6px}
-  .tool .ar{display:none}
-  .tool .nm{min-width:auto}
+  .lead{padding:28px 0 6px}.lead h1{font-size:21px}
+  .tool{gap:10px}.tool .ar{display:none}.tool .nm{min-width:auto}
 }
-
 </style>
 </head>
 <body>
@@ -131,78 +67,61 @@ footer .copy{font-size:12px;color:var(--ink3)}
 <div class="wrap">
 
   <div class="lead">
-    <h1>在线工具，开箱即用</h1>
-    <p class="sub">图片、PDF、表格的日常处理，加上 31 个常用小工具。全部在浏览器本地完成，文件不经过任何服务器，断网可用。</p>
+    <h1>常用的都在这，点开就能用</h1>
+    <p class="sub">图片、PDF、表格、编码换算。都在你自己的浏览器里跑，文件不经过服务器。</p>
   </div>
 
-  <!-- 三个产品 -->
-  <div class="sec">
-    <h2>三个产品</h2>
-    <div class="tools">
-      <a class="tool hot" href="https://lsj666nsyw.github.io/whale-tools/">
-        <span class="nm">小工具集</span>
-        <span class="ds">31 个常用工具：计算器、编解码、单位换算、MD5、文本对比</span>
-        <span class="ar">→</span>
-      </a>
-      <a class="tool hot" href="https://lsj666nsyw.github.io/whale-batch/">
-        <span class="nm">批量处理</span>
-        <span class="ds">图片 / PDF / 表格 一次多份，批量改尺寸、压缩、合并、比对</span>
-        <span class="ar">→</span>
-      </a>
-      <a class="tool hot" href="https://lsj666nsyw.github.io/office-tools/">
-        <span class="nm">办公工具箱</span>
-        <span class="ds">8 大模块：Word 转档、PDF 水印、数据清洗、图片高级处理</span>
-        <span class="ar">→</span>
-      </a>
-    </div>
+  <div class="sec"><h2>三大件</h2></div>
+  <div class="quick">
+    <a href="https://lsj666nsyw.github.io/whale-tools/#全部工具"><div class="nm">小工具集</div><div class="ds">计算器、编解码、换算等 31 个</div></a>
+    <a href="https://lsj666nsyw.github.io/whale-batch/#图片"><div class="nm">批量处理</div><div class="ds">几十张图片/PDF/表格一起处理</div></a>
+    <a href="https://lsj666nsyw.github.io/office-tools/#图片"><div class="nm">办公工具箱</div><div class="ds">水印、转档、数据清洗全模块</div></a>
   </div>
 
-  <!-- 小工具集完整列表 -->
-  <div class="sec">
-    <h2>小工具集（31 个）</h2>
-    <div class="grid">
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">计算器</div><div class="ds">四则运算、括号、幂、三角函数</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">文本对比</div><div class="ds">逐行找差异</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">JSON ⇄ CSV</div><div class="ds">表格数据互转</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">二维码生成</div><div class="ds">网址、文字转二维码</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">Base64</div><div class="ds">编解码，支持中文</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">URL 编解码</div><div class="ds">中文网址转义</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">哈希计算</div><div class="ds">SHA-256 / SHA-512</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">MD5</div><div class="ds">文本和文件校验</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">文本处理</div><div class="ds">去重、去空行、大小写</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">字数统计</div><div class="ds">字符、汉字、行数</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">简繁转换</div><div class="ds">简体繁体互转</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">假文生成</div><div class="ds">Lorem 占位文本</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">关键字检测</div><div class="ds">敏感词标红计数</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">命名转换</div><div class="ds">驼峰、下划线、常量</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">单位换算</div><div class="ds">长度、重量、面积、数据</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">百分比计算</div><div class="ds">涨跌、占比、折扣</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">比例换算</div><div class="ds">配方、图纸缩放</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">时间戳转换</div><div class="ds">秒/毫秒与日期互转</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">日期计算</div><div class="ds">相差天数、工作日</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">生肖星座</div><div class="ds">生肖、星座、第几周</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">密码生成</div><div class="ds">加密级随机，含强度</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">随机抽签</div><div class="ds">名单随机抽取</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">随机数</div><div class="ds">范围内不重复</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">图片压缩</div><div class="ds">单张压缩、限边长</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">颜色转换</div><div class="ds">HEX / RGB / HSL</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">JSON 格式化</div><div class="ds">美化、压缩、校验</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">代码格式化</div><div class="ds">JSON / SQL / CSS</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">格式校验</div><div class="ds">手机号、邮箱、IP</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">身份证校验</div><div class="ds">校验码、生日、性别</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">摩斯密码</div><div class="ds">字母数字转电码</div></a>
-      <a href="https://lsj666nsyw.github.io/whale-tools/"><div class="nm">Emoji</div><div class="ds">表情复制、分类筛选</div></a>
-    </div>
+  <div class="sec"><h2>直达常用功能（按使用频率排）</h2></div>
+  <div class="tools">
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#图片压缩"><span class="nm">图片压缩</span><span class="ds">单张压小、限边长</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/office-tools/#pdf"><span class="nm">PDF 合并</span><span class="ds">多个 PDF 拼成一个</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/office-tools/#pdf"><span class="nm">PDF 拆分</span><span class="ds">按页拆出或提取页码</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#json"><span class="nm">JSON 格式化</span><span class="ds">美化、压缩、校验</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#单位"><span class="nm">单位换算</span><span class="ds">长度重量面积数据</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#二维码"><span class="nm">二维码生成</span><span class="ds">网址文字转二维码</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#计算器"><span class="nm">计算器</span><span class="ds">四则括号幂函数</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#字数"><span class="nm">字数统计</span><span class="ds">字符汉字行数</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#文本"><span class="nm">文本处理</span><span class="ds">去重去空行大小写</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#base64"><span class="nm">Base64</span><span class="ds">编解码支持中文</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#md5"><span class="nm">MD5 / 哈希</span><span class="ds">文本与文件摘要</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#时间戳"><span class="nm">时间戳转换</span><span class="ds">秒毫秒与日期互转</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#密码"><span class="nm">密码生成</span><span class="ds">加密级随机</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/office-tools/#excel"><span class="nm">Excel 合并</span><span class="ds">多表合成总表</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-batch/#表格"><span class="nm">表格比对</span><span class="ds">两表找不同</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-batch/#图片"><span class="nm">批量改尺寸</span><span class="ds">一次处理几十张</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#简繁"><span class="nm">简繁转换</span><span class="ds">简体繁体互转</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#颜色"><span class="nm">颜色取值</span><span class="ds">HEX RGB HSL</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#文本对比"><span class="nm">文本对比</span><span class="ds">逐行找差异</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#JSON%E2%87%84CSV"><span class="nm">JSON ⇄ CSV</span><span class="ds">表格数据互转</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#身份证"><span class="nm">身份证校验</span><span class="ds">校验码生日性别</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#校验"><span class="nm">格式校验</span><span class="ds">手机邮箱 IP</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#关键字"><span class="nm">关键字检测</span><span class="ds">敏感词标红</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#日期"><span class="nm">日期计算</span><span class="ds">相差天数工作日</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#百分比"><span class="nm">百分比</span><span class="ds">涨跌占比折扣</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/office-tools/#toimg"><span class="nm">图片转 PDF</span><span class="ds">照片合成文档</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/office-tools/#word"><span class="nm">Word 转 HTML</span><span class="ds">保留排版可发布</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#命名"><span class="nm">命名转换</span><span class="ds">驼峰下划线常量</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#emoji"><span class="nm">Emoji</span><span class="ds">表情复制筛选</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#假文"><span class="nm">假文生成</span><span class="ds">Lorem 占位</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#抽签"><span class="nm">随机抽签</span><span class="ds">名单抽取</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#随机数"><span class="nm">随机数</span><span class="ds">范围内取数</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#比例"><span class="nm">比例换算</span><span class="ds">配方图纸缩放</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#生肖"><span class="nm">生肖星座</span><span class="ds">属相第几周</span><span class="ar">→</span></a>
+      <a class="tool" href="https://lsj666nsyw.github.io/whale-tools/#摩斯"><span class="nm">摩斯密码</span><span class="ds">字母转电码</span><span class="ar">→</span></a>
   </div>
 
-  <!-- 关于本地处理 -->
-  <div class="sec">
-    <h2>关于本地处理</h2>
-    <div class="note">
-      <p><b>没有后端服务器。</b>所有处理都在你的浏览器里完成。文件从选择到出结果，全程不离开这台设备——关掉页面就没了，我们也看不见。</p>
-      <p>第一次打开要下载几个处理库（约 2～4 MB）。加载完就缓存住了，之后断网也能用。</p>
-      <p>支持的格式：图片 JPG / PNG / WebP / BMP / GIF；PDF 标准 .pdf；表格 .xlsx / .xls / .csv；文档 .docx（Word 2007 及以上）。</p>
-    </div>
+  <div class="sec"><h2>说明</h2></div>
+  <div class="note">
+    <b>没有后端服务器。</b>文件从选择到出结果全程在你的设备内存里，关掉页面就没了。<br>
+    首次打开需加载处理库（约 2～4 MB），之后断网也能用。<br>
+    支持：图片 JPG/PNG/WebP/BMP/GIF · PDF · 表格 xlsx/xls/csv · Word docx。
   </div>
 
 </div>
